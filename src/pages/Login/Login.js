@@ -1,36 +1,36 @@
-import React, { useState } from 'react'
-import { auth } from '../../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { useNavigate, Link } from 'react-router-dom'
-import './Login.css'
-import poster from '../../assets/shark-tank-poster.jpg'
+import React, { useState } from "react";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
+import poster from "../../assets/shark-tank-poster.jpg";
 
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [loginEmail, setLoginEmail] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const login = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      navigate('/feed')
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      navigate("/feed");
     } catch (error) {
       toast.error(error.message.slice(15), {
-        position: 'bottom-right',
-        autoClose: 2000,
+        position: "bottom-right",
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      })
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -50,7 +50,7 @@ const Login = () => {
               <input
                 type="text"
                 onChange={(event) => {
-                  setLoginEmail(event.target.value)
+                  setLoginEmail(event.target.value);
                 }}
                 placeholder="Email"
               />
@@ -60,7 +60,7 @@ const Login = () => {
               <input
                 type="password"
                 onChange={(event) => {
-                  setLoginPassword(event.target.value)
+                  setLoginPassword(event.target.value);
                 }}
                 placeholder="Password"
               />
@@ -77,7 +77,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
